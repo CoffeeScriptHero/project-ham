@@ -1,1 +1,1 @@
-https://coffeescripthero.github.io/step-project-ham/
+https://coffeescripthero.github.io/project-ham/
