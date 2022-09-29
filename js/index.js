@@ -60,22 +60,25 @@ function buttonActivatingHandler() {
 
 //----Amazing Tabs, Button----//
 
-$(`.category_item`).on("click", categoryClickingHandler);
+$(`.category_item`).click(categoryClickingHandler);
+$(".category_option").click(categoryClickingHandler);
 
 function categoryClickingHandler() {
   let currentTab = $(this);
+  const className = currentTab[0].classList[0];
+
   if (currentTab.hasClass("active")) {
     currentTab.removeClass("active");
     resumeTabs();
     return;
   }
   if (currentTab.data("amazing-tab") === "all") {
-    tabsActiveCheck();
+    tabsActiveCheck(className);
     resumeTabs();
     currentTab.addClass("active");
     return;
   }
-  tabsActiveCheck();
+  tabsActiveCheck(className);
   $(`.category_image_item`).each(function () {
     if ($(this).data("amazing-name") !== currentTab.data("amazing-tab")) {
       $(this).addClass("none");
@@ -84,8 +87,8 @@ function categoryClickingHandler() {
     currentTab.addClass("active");
   });
 }
-function tabsActiveCheck() {
-  $(`.category_item`).each(function () {
+function tabsActiveCheck(className) {
+  $(`.${className}`).each(function () {
     if ($(this).hasClass("active")) {
       $(this).removeClass("active");
       resumeTabs();
