@@ -1,5 +1,16 @@
 "use strict";
 
+$(document).ready(function () {
+  $(".menu_icon").click(function () {
+    $(".navbar").toggleClass("mobile");
+  });
+
+  $(".services_select").change(function () {
+    $(".description_block_active").removeClass("description_block_active");
+    $(`[data-name=${this.value}]`).addClass("description_block_active");
+  });
+});
+
 //----Services Tabs----//
 
 pageLoadCheck();
@@ -38,10 +49,7 @@ function disableOthersTabs() {
 
 function buttonActivatingHandler() {
   let currentTextBlock = $(`[data-name= ${$(this).data("tab-name")}]`);
-  if (currentTextBlock.hasClass("description_block_active")) {
-    currentTextBlock.removeClass("description_block_active");
-    $(this).removeClass("active");
-  } else {
+  if (!currentTextBlock.hasClass("description_block_active")) {
     disableOthersTabs();
     currentTextBlock.addClass("description_block_active");
     $(this).addClass("active");
