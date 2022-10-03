@@ -127,6 +127,7 @@ function loadNewImages() {
 //----Carousel----//
 $(`.slider_button_left`).on("click", previousSlide);
 $(`.slider_button_right`).on("click", nextSlide);
+
 $(`.slide_people_icon`).each(function () {
   $(this).on("click", imageSliderHandler);
 });
@@ -135,7 +136,15 @@ let slides = $(`.slide_people_icon`);
 let currentPerson = $(`.person_wrapper:nth-child(3)`).data("person-number") - 1;
 let currentSlide = $(`.slide_selected`).data("slide-number") - 1;
 $(personBlocks[currentPerson]).fadeIn();
+
+function disableButton(button) {
+  $(button)[0].disabled = true;
+  setTimeout(() => {
+    $(button)[0].disabled = false;
+  }, 450);
+}
 function previousSlide() {
+  disableButton(this);
   $(slides[currentSlide]).removeClass("slide_selected");
   $(personBlocks[currentPerson]).fadeOut(function () {
     previousSlideCheck();
@@ -144,6 +153,7 @@ function previousSlide() {
   });
 }
 function nextSlide() {
+  disableButton(this);
   $(slides[currentSlide]).removeClass("slide_selected");
   $(personBlocks[currentPerson]).fadeOut(function () {
     nextSlideCheck();
@@ -152,6 +162,7 @@ function nextSlide() {
   });
 }
 function imageSliderHandler() {
+  if (currentPerson + 1 === parseInt($(this).attr("data-slide-number"))) return;
   $(slides[currentSlide]).removeClass("slide_selected");
   currentSlide = $(this).data("slide-number") - 1;
   $(personBlocks[currentPerson]).fadeOut(function () {
