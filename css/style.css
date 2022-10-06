@@ -1115,6 +1115,10 @@
   margin: 0;
   padding-bottom: 115px;
 }
+.gallery_title_wrapper {
+  display: inline-block;
+  position: relative;
+}
 .gallery_title::after {
   content: "";
   position: absolute;
@@ -1124,17 +1128,14 @@
   right: 163px;
   top: 64px;
 }
-.masonry {
-  position: relative;
-}
-.masonry_item:first-child:before {
+.gallery_title_wrapper::after {
   content: "";
   position: absolute;
   width: 79px;
   height: 2px;
   background-color: #18cfab;
-  left: 550px;
-  bottom: 348px;
+  right: 150.5px;
+  top: 68px;
 }
 .masonry_item {
   width: 378px;
@@ -1328,6 +1329,9 @@
   }
   .reviews .container {
     width: 920px;
+  }
+  .gallery {
+    display: none;
   }
 }
 @media (max-width: 975px) {
